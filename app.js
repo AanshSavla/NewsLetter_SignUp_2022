@@ -3,6 +3,7 @@ const app = express();
 const request = require("request");
 const bodyParser = require("body-parser");
 const https = require("https");
+require("dotenv").config();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
@@ -35,7 +36,7 @@ app.post("/",function(req,res){
   const url = "https://us21.api.mailchimp.com/3.0/lists/889441138c"
   const options = {
     method:"POST",
-    auth:"Aansh:759782cbffef23d1656c0121bfa13f1f-us21"
+    auth:"Aansh:"+process.env.API_KEY
   }
 
   const requestHttp = https.request(url,options,function(response){
